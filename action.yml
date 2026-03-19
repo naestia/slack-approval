@@ -6,6 +6,9 @@ inputs:
     description: 'Custom blocks to display in Slack notification (JSON string)'
     required: false
     default: '[]'
+outputs:
+  approval:
+    description: 'Approval status - "approved" or "rejected"'
 runs:
   using: "node24"
   main: "dist/index.js"

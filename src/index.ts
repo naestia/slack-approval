@@ -144,6 +144,7 @@ async function run(): Promise<void> {
         logger.error(error)
       }
 
+      core.setOutput('approval', 'approved')
       process.exit(0)
     });
 
@@ -169,6 +170,7 @@ async function run(): Promise<void> {
         logger.error(error)
       }
 
+      core.setOutput('approval', 'rejected')
       process.exit(1)
     });
 

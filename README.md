@@ -51,6 +51,34 @@ jobs:
 - Set `timeout-minutes`
   - Set the time to wait for approval. If the timeout is reached, GitHub Actions will forcefully terminate the workflow.
 
+## Outputs
+
+- `approval`: The approval status - returns `"approved"` when the approval is granted or `"rejected"` when rejected
+
+### Using the output
+
+You can use the approval output in subsequent steps:
+
+```yaml
+jobs:
+  approval:
+    runs-on: ubuntu-latest
+    steps:
+      - name: send approval
+        id: approval
+        uses: varu3/slack-approval@main
+        env:
+          SLACK_APP_TOKEN: ${{ secrets.SLACK_APP_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_SIGNING_SECRET: ${{ secrets.SLACK_SIGNING_SECRET }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+        timeout-minutes: 10
+
+      - name: check approval status
+        run: |
+          echo "Approval status: ${{ steps.approval.outputs.approval }}"
+```
+
 ## Custom Blocks
 
 You can add custom blocks to the Slack notification by using the `custom-blocks` input:

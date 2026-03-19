@@ -168,6 +168,7 @@ async function run() {
             catch (error) {
                 logger.error(error);
             }
+            core.setOutput('approval', 'approved');
             process.exit(0);
         });
         app.action('slack-approval-reject', async ({ ack, client, body, logger }) => {
@@ -191,6 +192,7 @@ async function run() {
             catch (error) {
                 logger.error(error);
             }
+            core.setOutput('approval', 'rejected');
             process.exit(1);
         });
         (async () => {
