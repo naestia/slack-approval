@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Release
-        uses: naestia/release@v0.0.1
+        uses: naestia/release@v0
         with:
           tag_prefix: "v"
           github_token: ${{ secrets.GITHUB_TOKEN }}
